@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_drawing"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="home.java.ru.firebase_test_1.DrawingActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/new_btn"
+                android:layout_width="50dp"
+                android:contentDescription="@string/start_new"
+                android:src="@drawable/newpicture"
+                android:layout_height="50dp"
+                android:scaleType="fitXY" />
+            <ImageButton
+                android:id="@+id/draw_btn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/brush"
+                android:src="@drawable/brush"
+                android:onClick="clearCanva"
+                android:scaleType="fitXY" />
+            <ImageButton
+                android:id="@+id/erase_btn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/erase"
+                android:src="@drawable/eraser"
+                android:scaleType="fitXY" />
+            <ImageButton
+                android:id="@+id/save_btn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/save"
+                android:src="@drawable/save"
+                android:scaleType="fitXY" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/surfaceLauout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true">
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
