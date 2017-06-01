@@ -46,8 +46,8 @@ class MySurfaceView2 extends SurfaceView {
         return true;
     }
 
-    public void changeToBlack(){
-        paint.setColor(Color.BLACK);
+    public void changeColor(int i){
+        paint.setColor(i);
 
     }
 }
