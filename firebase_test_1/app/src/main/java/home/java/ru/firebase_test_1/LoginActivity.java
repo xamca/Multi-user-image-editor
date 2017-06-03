@@ -9,7 +9,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,12 +18,12 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button btnRegistration;
-    private Button btnSignIn;
-    private EditText etEmail;
-    private EditText etPassword;
+    private Button mBtnRegistration;
+    private Button mBtnSignIn;
+    private EditText mEtEmail;
+    private EditText mEtPassword;
 
-    private ProgressDialog progressDialog;
+    private ProgressDialog mProgressDialog;
 
     private FirebaseAuth firebaseAuth;
 
@@ -48,22 +47,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        progressDialog = new ProgressDialog(this);
+        mProgressDialog = new ProgressDialog(this);
 
-        btnRegistration = (Button)findViewById(R.id.btn_registration);
-        btnSignIn = (Button)findViewById(R.id.btn_sign_in);
-        etEmail = (EditText) findViewById(R.id.et_email);
-        etPassword = (EditText) findViewById(R.id.et_password);
+        mBtnRegistration = (Button)findViewById(R.id.btn_registration);
+        mBtnSignIn = (Button)findViewById(R.id.btn_sign_in);
+        mEtEmail = (EditText) findViewById(R.id.et_email);
+        mEtPassword = (EditText) findViewById(R.id.et_password);
 
-        btnRegistration.setOnClickListener(this);
-        btnSignIn.setOnClickListener(this);
+        mBtnRegistration.setOnClickListener(this);
+        mBtnSignIn.setOnClickListener(this);
 
 
     }
 
     public void registerUser(){
-        String email = etEmail.getText().toString().trim();
-        String password = etPassword.getText().toString().trim();
+        String email = mEtEmail.getText().toString().trim();
+        String password = mEtPassword.getText().toString().trim();
 
         if (TextUtils.isEmpty(email)){
             Toast.makeText(this, "Please enter email", Toast.LENGTH_SHORT).show();
@@ -75,14 +74,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         }
 
-        progressDialog.setMessage("Registering user...");
-        progressDialog.show();
+        mProgressDialog.setMessage("Registering user...");
+        mProgressDialog.show();
 
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        progressDialog.dismiss();
+                        mProgressDialog.dismiss();
                         if (task.isSuccessful()) {
                             Toast.makeText(LoginActivity.this, "Registered successfully", Toast.LENGTH_SHORT).show();
                         } else {
@@ -93,8 +92,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void userSighIn(){
-        String email = etEmail.getText().toString().trim();
-        String password = etPassword.getText().toString().trim();
+        String email = mEtEmail.getText().toString().trim();
+        String password = mEtPassword.getText().toString().trim();
 
         if (TextUtils.isEmpty(email)){
             Toast.makeText(this, "Please enter email", Toast.LENGTH_SHORT).show();
@@ -106,14 +105,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         }
 
-        progressDialog.setMessage("Registering user...");
-        progressDialog.show();
+        mProgressDialog.setMessage("Registering user...");
+        mProgressDialog.show();
 
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        progressDialog.dismiss();
+                        mProgressDialog.dismiss();
                         if (task.isSuccessful()) {
                             Toast.makeText(LoginActivity.this, "Signed in successfully", Toast.LENGTH_SHORT).show();
                             finish();
@@ -130,10 +129,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View view){
-        if (view == btnRegistration){
+        if (view == mBtnRegistration){
             registerUser();
         }
-        if (view == btnSignIn){
+        if (view == mBtnSignIn){
             userSighIn();
         }
 

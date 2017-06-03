@@ -14,9 +14,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     private FirebaseAuth firebaseAuth;
 
-    private TextView tvUserName;
-    private Button btnLogOut;
-    private Button btnStartPainting;
+    private TextView mTvUserName;
+    private Button mBtnLogOut;
+    private Button mBtnStartPainting;
 
 
 
@@ -37,11 +37,11 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         init();
 
-        tvUserName.setText("Welcome, " + curUser.getEmail());
+        mTvUserName.setText("Welcome, " + curUser.getEmail());
 
-        btnLogOut.setOnClickListener(this);
+        mBtnLogOut.setOnClickListener(this);
 
-        btnStartPainting.setOnClickListener(new View.OnClickListener() {
+        mBtnStartPainting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProfileActivity.this, DrawingActivity.class);
@@ -53,15 +53,15 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     public void init(){
-        btnLogOut = (Button)findViewById(R.id.btn_log_out);
-        tvUserName = (TextView)findViewById(R.id.tv_signed_in);
-        btnStartPainting = (Button)findViewById(R.id.btn_start_painting);
+        mBtnLogOut = (Button)findViewById(R.id.btn_log_out);
+        mTvUserName = (TextView)findViewById(R.id.tv_signed_in);
+        mBtnStartPainting = (Button)findViewById(R.id.btn_start_painting);
 
     }
 
     @Override
     public void onClick(View view) {
-        if (view == btnLogOut){
+        if (view == mBtnLogOut){
             firebaseAuth.signOut();
             finish();
             startActivity(new Intent(this, LoginActivity.class));

@@ -3,6 +3,7 @@ package home.java.ru.firebase_test_1;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
@@ -10,16 +11,19 @@ import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+
 public class DrawingActivity extends Activity {
 
-    private RelativeLayout rlSurfaceview;
-    private ImageButton btn_erase;
-    private GridLayout grdColors;
+    final int[] sColor = { Color.BLACK, Color.BLUE, Color.CYAN, Color.DKGRAY,
+            Color.GRAY, Color.GREEN, Color.LTGRAY, Color.MAGENTA, Color.RED, Color.TRANSPARENT,
+            Color.WHITE, Color.YELLOW };
+
+    private RelativeLayout mRlSurfaceview;
+    private ImageButton mBtnErase;
+    private GridLayout mGrdColors;
 
     private MySurfaceView2 mySurfaceView2;
-
-    private ArrayList<View> imbtns_color;
-    private View colorView;
 
 
     @Override
@@ -28,12 +32,10 @@ public class DrawingActivity extends Activity {
         setContentView(R.layout.activity_drawing);
         mySurfaceView2 = new MySurfaceView2(this);
 
-        imbtns_color = new ArrayList<View>();
-
         init();
 
         //тест метода смены цвета. TODO передавать цвет в функцию параметром
-        btn_erase.setOnClickListener(new View.OnClickListener() {
+        mBtnErase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mySurfaceView2.changeColor(1);
@@ -49,24 +51,36 @@ public class DrawingActivity extends Activity {
 
     public void init(){
 
-        rlSurfaceview = (RelativeLayout)findViewById(R.id.surfaceLauout);
-        btn_erase = (ImageButton) findViewById(R.id.erase_btn);
-        grdColors = (GridLayout)findViewById(R.id.gridLayoutColors);
+        mRlSurfaceview = (RelativeLayout)findViewById(R.id.surfaceLauout);
+        mBtnErase = (ImageButton) findViewById(R.id.erase_btn);
+        mGrdColors = (GridLayout)findViewById(R.id.gridLayoutColors);
 
-        final int[] sColor = { Color.BLACK, Color.BLUE, Color.CYAN, Color.DKGRAY,
-                Color.GRAY, Color.GREEN, Color.LTGRAY, Color.MAGENTA, Color.RED, Color.TRANSPARENT,
-                Color.WHITE, Color.YELLOW };
+        mRlSurfaceview.addView(mySurfaceView2);
 
+        mGrdColors.setColumnCount(6);
+        mGrdColors.setRowCount(2);
 
-        for (int i = 1; i <= 12; i++){
+        GridLayout.LayoutParams grdColorParams = new GridLayout.LayoutParams();
+        GridLayout.LayoutParams grdColorParams2 = new GridLayout.LayoutParams();
+        grdColorParams.height = 50;
+        grdColorParams.width = 50;
+        grdColorParams.setGravity(Gravity.LEFT);
+        grdColorParams2.height = 50;
+        grdColorParams2.width = 50;
+        grdColorParams2.setGravity(Gravity.LEFT);
 
+        grdColorParams.leftMargin = 50;
+
+        // первая вью
+        for (int i = 1; i <= 1; i++){
             View v = new View(this);
-            grdColors.addView(v);
-            v.setMinimumWidth(30);
-            v.setMinimumHeight(30);
-            //TODO как определить бекграунд, как определить, сколько элементов создано
-            v.setTag(grdColors.getChildCount() + 1);
 
+            v.setBackgroundColor(sColor[i-1]);
+
+            mGrdColors.addView(v, grdColorParams);
+
+            //TODO как определить бекграунд, как определить, сколько элементов создано
+            v.setTag(mGrdColors.getChildCount() + 1);
             //TODO избавиться от подобного безумия
             final int c = i-1;
 
@@ -79,11 +93,24 @@ public class DrawingActivity extends Activity {
 
         }
 
+        // второе вью
+        grdColorParams2.leftMargin = 100;
+        View v2 = new View(this);
+        v2.setBackgroundColor(sColor[5]);
+        mGrdColors.addView(v2, grdColorParams2);
+        v2.setTag(mGrdColors.getChildCount() + 1);
+
+        v2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mySurfaceView2.changeColor(sColor[5]);
+            }
+        });
 
 
-
-        rlSurfaceview.addView(mySurfaceView2);
 
     }
+
+
 
 }
