@@ -13,12 +13,9 @@ import com.google.firebase.auth.FirebaseUser;
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
     private FirebaseAuth firebaseAuth;
-
     private TextView mTvUserName;
     private Button mBtnLogOut;
     private Button mBtnStartPainting;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,14 +29,11 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             startActivity(new Intent(this, LoginActivity.class));
         }
 
-        FirebaseUser curUser = firebaseAuth.getCurrentUser();
-
-
         init();
-
+        FirebaseUser curUser = firebaseAuth.getCurrentUser();
         mTvUserName.setText("Welcome, " + curUser.getEmail());
-
         mBtnLogOut.setOnClickListener(this);
+
 
         mBtnStartPainting.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,15 +42,12 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 startActivity(intent);
             }
         });
-
-
     }
 
     public void init(){
         mBtnLogOut = (Button)findViewById(R.id.btn_log_out);
         mTvUserName = (TextView)findViewById(R.id.tv_signed_in);
         mBtnStartPainting = (Button)findViewById(R.id.btn_start_painting);
-
     }
 
     @Override

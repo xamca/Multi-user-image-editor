@@ -22,11 +22,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button mBtnSignIn;
     private EditText mEtEmail;
     private EditText mEtPassword;
-
     private ProgressDialog mProgressDialog;
-
     private FirebaseAuth firebaseAuth;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,25 +36,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             finish();
             startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
         }
-
-
     }
 
     public void init(){
 
         firebaseAuth = FirebaseAuth.getInstance();
-
         mProgressDialog = new ProgressDialog(this);
-
         mBtnRegistration = (Button)findViewById(R.id.btn_registration);
         mBtnSignIn = (Button)findViewById(R.id.btn_sign_in);
         mEtEmail = (EditText) findViewById(R.id.et_email);
         mEtPassword = (EditText) findViewById(R.id.et_password);
-
         mBtnRegistration.setOnClickListener(this);
         mBtnSignIn.setOnClickListener(this);
-
-
     }
 
     public void registerUser(){
@@ -66,12 +56,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if (TextUtils.isEmpty(email)){
             Toast.makeText(this, "Please enter email", Toast.LENGTH_SHORT).show();
-
         }
         if (TextUtils.isEmpty(password)){
             Toast.makeText(this, "Please enter password", Toast.LENGTH_SHORT).show();
-
-
         }
 
         mProgressDialog.setMessage("Registering user...");
@@ -97,12 +84,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if (TextUtils.isEmpty(email)){
             Toast.makeText(this, "Please enter email", Toast.LENGTH_SHORT).show();
-
         }
         if (TextUtils.isEmpty(password)){
             Toast.makeText(this, "Please enter password", Toast.LENGTH_SHORT).show();
-
-
         }
 
         mProgressDialog.setMessage("Registering user...");
@@ -122,8 +106,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         }
                     }
                 });
-
-
     }
 
 
@@ -135,6 +117,5 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (view == mBtnSignIn){
             userSighIn();
         }
-
     }
 }
