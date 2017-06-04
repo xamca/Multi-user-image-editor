@@ -1,6 +1,8 @@
 package home.java.ru.firebase_test_1;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +11,8 @@ import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.view.View.OnClickListener;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 
 public class DrawingActivity extends Activity implements OnClickListener {
@@ -20,6 +24,8 @@ public class DrawingActivity extends Activity implements OnClickListener {
     private RelativeLayout mRlSurfaceview;
     private GridLayout mGrdColors;
     private MySurfaceView2 mySurfaceView2;
+    private ImageButton mBtnBrushSize;
+    private ImageButton mBtnSave;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +35,15 @@ public class DrawingActivity extends Activity implements OnClickListener {
 
         init();
 
+        mBtnBrushSize.setOnClickListener(this);
+        mBtnSave.setOnClickListener(this);
+
+
     }
 
     public void init(){
-
+        mBtnBrushSize = (ImageButton) findViewById(R.id.brush_btn);
+        mBtnSave = (ImageButton) findViewById(R.id.save_btn);
         mRlSurfaceview = (RelativeLayout)findViewById(R.id.surfaceLauout);
         mRlSurfaceview.addView(mySurfaceView2);
 
@@ -59,8 +70,35 @@ public class DrawingActivity extends Activity implements OnClickListener {
     }
     @Override
     public void onClick(View v) {
-        int mTemp = (int)v.getTag();
-        mySurfaceView2.changeColor(sColor[mTemp]);
+        if (v.getTag() != null) {
+            int mTemp = (int) v.getTag();
+            mySurfaceView2.changeColor(sColor[mTemp]);
+        } else
+        {
+            switch (v.getId()) {
+                case R.id.brush_btn: {
+                    brushSizeAlert();
+                } break;
+                case R.id.save_btn: Toast.makeText(this, "Image saved", Toast.LENGTH_SHORT).show(); break;
+            }
+        }
+    }
+
+    public void brushSizeAlert(){
+        final CharSequence[] items = {
+                "small", "medium", "big"
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Make your selection");
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int item) {
+                // пока что по-простому - три варианта без картинок
+                mySurfaceView2.changeBrushSize(item*10);
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
 }

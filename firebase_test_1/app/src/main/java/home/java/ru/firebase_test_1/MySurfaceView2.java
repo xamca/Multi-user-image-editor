@@ -50,4 +50,8 @@ class MySurfaceView2 extends SurfaceView {
         paint.setColor(i);
 
     }
+
+    public void changeBrushSize(int i){
+        paint.setStrokeWidth(i);
+    }
 }

@@ -30,7 +30,7 @@
                 android:layout_height="50dp"
                 android:scaleType="fitXY" />
             <ImageButton
-                android:id="@+id/draw_btn"
+                android:id="@+id/brush_btn"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:contentDescription="@string/brush"
