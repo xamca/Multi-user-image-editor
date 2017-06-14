@@ -8,21 +8,36 @@
     tools:context="home.java.ru.firebase_test_1.LoginActivity">
 
 
-    <EditText android:layout_width="250dp"
-        android:layout_height="50dp"
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp"
+        android:text="Welcome to editor!"
+        android:textColor="@android:color/black"
+        android:textSize="30sp" />
+
+    <EditText
         android:id="@+id/et_email"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="145dp"
         android:hint="Email"
-        android:textSize="30dp"/>
-    <EditText android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/et_email"
-        android:hint="Password"
-        android:textSize="30dp"
+        android:inputType="textEmailAddress"
+        android:textSize="25dp" />
+
+    <EditText
         android:id="@+id/et_password"
-        />
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/et_email"
+        android:layout_centerHorizontal="true"
+        android:hint="Password"
+        android:textSize="25dp"
+        android:inputType="textPassword" />
 
     <LinearLayout android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,4 +56,5 @@
             android:id="@+id/btn_registration"/>
 
     </LinearLayout>
+
 </RelativeLayout>

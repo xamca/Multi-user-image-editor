@@ -51,16 +51,22 @@
                 android:contentDescription="@string/save"
                 android:src="@drawable/save"
                 android:scaleType="fitXY" />
+            <ImageButton
+            android:id="@+id/load_btn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="@string/load"
+            android:src="@drawable/load"
+            android:scaleType="fitXY" />
 
         </LinearLayout>
 
         <RelativeLayout
             android:id="@+id/surfaceLauout"
-            android:layout_width="match_parent"
-            android:layout_height="341dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentStart="true">
-        </RelativeLayout>
+            android:layout_width="350dp"
+            android:layout_height="350dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"></RelativeLayout>
 
         <Space
             android:layout_width="match_parent"
@@ -68,8 +74,8 @@
 
         <GridLayout
             android:id="@+id/gridLayoutColors"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             tools:columnCount="2">
 
         </GridLayout>

@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -16,6 +17,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private TextView mTvUserName;
     private Button mBtnLogOut;
     private Button mBtnStartPainting;
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +33,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         init();
         FirebaseUser curUser = firebaseAuth.getCurrentUser();
-        mTvUserName.setText("Welcome, " + curUser.getEmail());
+        mTvUserName.setText(curUser.getEmail());
         mBtnLogOut.setOnClickListener(this);
 
 
